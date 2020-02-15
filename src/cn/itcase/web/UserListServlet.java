@@ -1,22 +1,27 @@
 package cn.itcase.web;
 
+import cn.itcase.domain.User;
+import cn.itcase.servise.UserServise;
+import cn.itcase.servise.impl.UserServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/userListServlet")
+@WebServlet( "/userListServlet")
 public class UserListServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //调用UserServ查询
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserServise service = new UserServiceImpl();
+        List<User> users = service.findAll();
+        request.setAttribute("users", users);
+        request.getRequestDispatcher("list.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doPost(req, resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doPost(request, response);
     }
 }

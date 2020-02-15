@@ -21,10 +21,38 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="lib" level="project" />
     <orderEntry type="library" exported="" name="junit" level="project" />
-    <orderEntry type="library" exported="" name="druid-1.0.9" level="project" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-5.0.8-bin" level="project" />
-    <orderEntry type="library" exported="" name="jdbcTemplate相关jar包" level="project" />
-    <orderEntry type="library" exported="" name="JSTL" level="project" />
-    <orderEntry type="library" exported="" name="imageio-core-3.4.1" level="project" />
+    <orderEntry type="library" name="druid-1.0.9" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.0.8-bin" level="project" />
+    <orderEntry type="library" name="jdbcTemplate相关jar包" level="project" />
+    <orderEntry type="library" name="JSTL" level="project" />
+    <orderEntry type="library" name="imageio-core-3.4.1" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/web/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/web/WEB-INF/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/lib/javax.servlet.jsp.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/lib/commons-beanutils-1.9.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

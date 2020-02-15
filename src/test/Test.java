@@ -1,9 +1,16 @@
 package test;
 
+import cn.itcase.dao.UserDao;
+import cn.itcase.dao.impl.UserDaoImpl;
+import cn.itcase.domain.User;
+import cn.itcase.servise.UserServise;
+import cn.itcase.servise.impl.UserServiceImpl;
 import cn.itcase.util.JDBCUtils;
+import sun.util.resources.cldr.ml.CalendarData_ml_IN;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Test {
 
@@ -16,5 +23,26 @@ public class Test {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    //测试dao层findall
+    @org.junit.Test
+    public void testFindAllDAO(){
+        UserDao dao = new UserDaoImpl();
+        List<User> users = dao.findAll();
+        System.out.println(users);
+    }
+
+    @org.junit.Test
+    public void testUserServise(){
+        UserServise userServise = new UserServiceImpl();
+        System.out.println(userServise.findAll());
+    }
+
+    @org.junit.Test
+    public void testfindUserByUsernameAndPassword(){
+        UserDao dao = new UserDaoImpl();
+        User user = dao.findUserByUsernameAndPassword("root", "admin");
+        System.out.println(user);
     }
 }

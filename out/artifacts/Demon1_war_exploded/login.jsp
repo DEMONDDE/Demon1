@@ -16,12 +16,10 @@
     <script type="text/javascript">
     </script>
     <script>
-        window.onload = function(){
-            document.getElementById("vcode").onclick = function(){
-                this.src="${pageContext.request.contextPath}/checkCodeServlet?time="+new Date().getTime();
-            }
+        function refreshCode(){
+            var img = document.getElementById("vcode");
+            img.src="${pageContext.request.contextPath}/checkCodeServlet?time="+new Date().getTime();
         }
-
     </script>
 
 

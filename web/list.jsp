@@ -83,7 +83,7 @@
 <body>
 <div class="container">
     <h3 style="text-align: center">用户信息列表</h3>
-
+    <!-- 查询区域-->
     <div style="float: left">
         <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
             <div class="form-group">
@@ -122,8 +122,8 @@
             <th>邮箱</th>
             <th>操作</th>
         </tr>
-
-        <c:forEach items="${pb.list}" var="user" varStatus="s">
+            <!-- 显示所有用户信息-->
+        <c:forEach items="${users}" var= "user" varStatus="s">
             <tr>
                 <th><input type="checkbox" name="uid" value="${user.id}"></th>
                 <td>${s.count}</td>
@@ -144,7 +144,7 @@
     </table>
 
     </form>
-
+<!-- 分页工具条-->
     <div>
         <nav aria-label="Page navigation">
             <ul class="pagination">
