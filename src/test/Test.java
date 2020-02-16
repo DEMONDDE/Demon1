@@ -6,6 +6,7 @@ import cn.itcase.domain.User;
 import cn.itcase.servise.UserServise;
 import cn.itcase.servise.impl.UserServiceImpl;
 import cn.itcase.util.JDBCUtils;
+import org.springframework.jdbc.core.JdbcTemplate;
 import sun.util.resources.cldr.ml.CalendarData_ml_IN;
 
 import java.sql.Connection;
@@ -45,4 +46,28 @@ public class Test {
         User user = dao.findUserByUsernameAndPassword("root", "admin");
         System.out.println(user);
     }
+
+    @org.junit.Test
+    public void testDelUserByid(){
+        UserServise servise = new UserServiceImpl();
+        servise.delUserById(10);
+    }
+
+    @org.junit.Test
+    public void testUpdate(){
+        UserDao userDao = new UserDaoImpl();
+        
+    }
+
+    //此测试只是为了添加测试数据
+    @org.junit.Test
+    public void addData(){
+        String sql = "INSERT INTO USER(id,NAME,gender,age,address,qq,email) VALUE( ?, ?, ?, ?, ?, ?, ?)";
+        JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
+        String data ="中文";
+        for( int i =50; i< 52; i++){
+            template.update(sql, i,data,data,i,data,data,data);
+        }
+    }
+
 }
