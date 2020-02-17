@@ -85,7 +85,7 @@
     <h3 style="text-align: center">用户信息列表</h3>
     <!-- 查询区域-->
     <div style="float: left">
-        <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
+        <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage}&rows=5" method="post">
             <div class="form-group">
                 <label for="exampleInputName1">姓名</label>
                 <input type="text" class="form-control" name="name" value="${condition.name[0]}" id="exampleInputName1" >
@@ -123,7 +123,7 @@
             <th>操作</th>
         </tr>
             <!-- 显示所有用户信息-->
-        <c:forEach items="${users}" var= "user" varStatus="s">
+        <c:forEach items="${pb.list}" var= "user" varStatus="s">
             <tr>
                 <th><input type="checkbox" name="uid" value="${user.id}"></th>
                 <td>${s.count}</td>
@@ -178,10 +178,10 @@
                  <c:if test="${pb.currentPage != pb.totalPage}">
                     <li><%--下一页--%>
                 </c:if>
-                        <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage + 1}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage + 1}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
 
 
                 <span style="font-size:25px;margin-left: 5px">

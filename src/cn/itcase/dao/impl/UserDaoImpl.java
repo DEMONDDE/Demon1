@@ -6,9 +6,9 @@ import cn.itcase.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class UserDaoImpl implements UserDao {
 
@@ -62,6 +62,46 @@ public class UserDaoImpl implements UserDao {
     public void addUser(User user) {
         String sql = "INSERT INTO USER VALUE( null, ?, ?, ?, ?, ?, ?, null, null)";
         template.update(sql,user.getName(), user.getGender(), user.getAge(), user.getAddress(), user.getQq(), user.getEmail());
+    }
+
+    @Override
+    public int findTotalCount(Map<String, String[]> condition) {
+        String sql = "select count(*) from user where 1=1 ";
+        String s = getSQL(condition);
+        sql = sql + s;
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    @Override
+    public List<User> findByPage(int start, int rows, Map<String, String[]> condition) {
+        String sql = "select * from user where 1=1 " ;
+        String s = getSQL(condition);
+        sql = sql + s;
+        sql += " limit ?, ? ";
+        List<User> list;
+        try{
+            list = template.query(sql, new BeanPropertyRowMapper<User>(User.class), start, rows);
+        }catch (Exception e){
+            list = null;
+        }
+        return list;
+    }
+
+    //获取模板sql语句
+    private String getSQL(Map<String, String[]> condition){
+        StringBuilder sql = new StringBuilder();
+        //遍历map
+        Set<String> k = condition.keySet();
+        for(String key:k){
+            if(key.equals("rows") || key.equals("currentPage")){
+                continue;
+            }
+            String value = condition.get(key)[0];
+            if(value != null && !"".equals(value)){
+                sql.append(" and "+key+" like '%"+value+"%' ");
+            }
+        }
+        return  sql.toString();
     }
 
 

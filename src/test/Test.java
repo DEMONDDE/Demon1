@@ -62,11 +62,11 @@ public class Test {
     //此测试只是为了添加测试数据
     @org.junit.Test
     public void addData(){
-        String sql = "INSERT INTO USER(id,NAME,gender,age,address,qq,email) VALUE( ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO USER(NAME,gender,age,address,qq,email) VALUE( ?, ?, ?, ?, ?, ?)";
         JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
         String data ="中文";
-        for( int i =50; i< 52; i++){
-            template.update(sql, i,data,data,i,data,data,data);
+        for( int i =0; i< 10; i++){
+            template.update(sql,data,data,i,data,data,data);
         }
     }
 
